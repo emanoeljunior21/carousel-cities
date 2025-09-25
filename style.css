@@ -1,249 +1,335 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
-    background-color: #000;
-    color: #eee;
-    font-size: 12px;
+  background-color: #000;
+  color: #eee;
+  font-size: 12px;
+  overflow-x: hidden;
 }
 
 header {
-    width: 80%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    z-index: 2;
-    margin: auto;
+  width: 80%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  margin: auto;
 }
 
 header a {
-    color: #eee;
-    margin-right: 40px;
-    font-weight: 300;
+  color: #eee;
+  margin-right: 40px;
+  font-weight: 300;
+  transition: color 0.3s;
+}
+
+header a:hover {
+  color: #ffa500;
 }
 
 .container {
-    height: 100vh;
-    width: 100vw;
-    margin-top: -50px;
-    overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  margin-top: -50px;
+  overflow: hidden;
+  position: relative;
 }
 
-.container .list .list-item {
-    width: 100%;
-    height: 100%;
-    position: absolute;
+.list {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
-.container .list .list-item img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    filter: brightness(50%);
+.list .list-item {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease;
 }
 
-.container .list .list-item .content {
-    position: absolute;
-    top: 20%;
-    right: 10%;
-    padding-right: 30%;
-    width: 80%;
-    color: #eee;
-    text-shadow: 0 5px 10px #0004;
+.list .list-item.active {
+  opacity: 1;
+  z-index: 1;
 }
 
-.container .list .list-item .title {
-    font-size: 5em;
-    font-weight: 700;
-    line-height: 1.3em;
+.list .list-item img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  filter: brightness(50%);
 }
 
-.container .list .list-item .description {
-    font-size: 1.5em;
+.list .list-item .content {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  padding-right: 10%;
+  width: 80%;
+  color: #eee;
+  text-shadow: 0 5px 10px #0004;
 }
 
-.container .list .list-item .buttons {
-    display: grid;
-    grid-template-columns: repeat(2, 130px);
-    grid-template-rows: 40px;
-    margin-top: 20px;
-    gap: 5px;
+.list .list-item .title {
+  font-size: 5em;
+  font-weight: 700;
+  line-height: 1.3em;
 }
 
-.container .list .list-item .buttons button {
-    border: none;
-    background-color: #eee;
-    letter-spacing: 3px;
-    font-weight: 500;
-    cursor: pointer;
-    text-transform: uppercase;
+.list .list-item .description {
+  font-size: 1.5em;
+  margin-top: 10px;
+  max-height: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.container .list .list-item .buttons button:hover {
-    background-color: transparent;
-    border: 1px solid #eee;
-    color: #eee;
-    transition: 0.7s;
+.list .list-item .buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 130px);
+  grid-template-rows: 40px;
+  margin-top: 20px;
+  gap: 10px;
 }
 
-.container .list .list-item .buttons button:nth-child(2) {
-    background: transparent;
-    border: 1px solid #eee;
-    color: #eee;
+.list .list-item .buttons button {
+  border: none;
+  background-color: #eee;
+  letter-spacing: 3px;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
 }
 
-.container .list .list-item .buttons button:nth-child(2):hover {
-    background-color: #eee;
-    color: #000;
+.list .list-item .buttons button:hover {
+  background-color: transparent;
+  border: 1px solid #eee;
+  color: #eee;
 }
 
-
-.container .thumb {
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    display: flex;
-    gap: 20px;
+.list .list-item .buttons button:nth-child(2) {
+  background: transparent;
+  border: 1px solid #eee;
+  color: #eee;
 }
 
-.container .thumb .thumb-item {
-    width: 135px;
-    height: 200px;
-    position: relative;
-    z-index: 3;
+.list .list-item .buttons button:nth-child(2):hover {
+  background-color: #eee;
+  color: #000;
 }
 
-.container .thumb .thumb-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(80%);
+.thumb {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 5;
 }
 
-.container .thumb .content {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
+.thumb .thumb-item {
+  width: 135px;
+  height: 200px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-.container .arrows {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    position: absolute;
-    bottom: 120px;
-    left: 125px;
-    width: 300px;
+.thumb .thumb-item:hover {
+  transform: translateY(-10px);
 }
 
-.container .arrows button {
-    border-radius: 10px;
-    border: none;
-    padding: 12px 17px;
-    background-color: #eee4;
-    color: #eee;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 1.5em;
+.thumb .thumb-item.active {
+  border: 3px solid #fff;
+  border-radius: 5px;
 }
 
-.container .arrows button:hover {
-    background-color: #eee;
-    color: #000;
-    transition: 0.7s;
+.thumb .thumb-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(80%);
+  border-radius: 5px;
 }
 
-.container .next .thumb {
-    animation: effectNextThumb 0.5s linear 1 forwards;
+.thumb .thumb-item .content {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
 }
 
-@keyframes effectNextThumb {
-    from {
-        transform: translateX(150px);
-    }
+.indicators {
+  position: absolute;
+  bottom: 270px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 5;
 }
 
-.container .next .thumb .thumb-item:nth-last-child(1) {
-    animation: effectLastThumb 0.5s linear 1 forwards;
+.indicators .dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-@keyframes effectLastThumb {
-    from {
-        width: 0;
-        opacity: 0;
-    }
+.indicators .dot.active,
+.indicators .dot:hover {
+  background-color: #fff;
+  transform: scale(1.2);
 }
 
-.container .list .list-item:nth-child(1) .content .title, 
-.container .list .list-item:nth-child(1) .content .title, .description,
-.container .list .list-item:nth-child(1) .content .title, .buttons {
+.arrows {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+.arrows button {
+  border-radius: 50%;
+  border: none;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #eee;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.5em;
+  transition: all 0.3s ease;
+}
+
+.arrows button:hover {
+  background-color: #eee;
+  color: #000;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
     transform: translateY(50px);
     filter: blur(20px);
-    opacity: 0;
-    animation: showContent 0.5s 1s linear forwards;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
-@keyframes showContent {
-    to {
-        transform: translateY(0);
-        filter: blur(0);
-        opacity: 1;
-    }
+.list .list-item.active .content .title {
+  animation: fadeIn 0.8s forwards;
 }
 
-.container .list .list-item:nth-child(1) .content .title {
-    animation-delay: 1.2s;
+.list .list-item.active .content .description {
+  animation: fadeIn 0.8s 0.3s forwards;
 }
 
-.container .list .list-item:nth-child(1) .content .description {
-    animation-delay: 1.6s;
+.list .list-item.active .content .buttons {
+  animation: fadeIn 0.8s 0.6s forwards;
 }
 
-.container .list .list-item:nth-child(1) .content .buttons {
-    animation-delay: 2s;
+@media (max-width: 768px) {
+  header {
+    width: 90%;
+    justify-content: center;
+  }
+
+  header a {
+    margin-right: 20px;
+    font-size: 0.9rem;
+  }
+
+  .list .list-item .content {
+    top: 15%;
+    right: 5%;
+    padding-right: 5%;
+    width: 90%;
+  }
+
+  .list .list-item .title {
+    font-size: 2.5em;
+  }
+
+  .list .list-item .description {
+    font-size: 1em;
+    max-height: 100px;
+  }
+
+  .list .list-item .buttons {
+    grid-template-columns: repeat(2, 110px);
+    grid-template-rows: 35px;
+  }
+
+  .thumb {
+    bottom: 100px;
+    gap: 10px;
+  }
+
+  .thumb .thumb-item {
+    width: 80px;
+    height: 120px;
+  }
+
+  .indicators {
+    bottom: 230px;
+  }
+
+  .arrows {
+    bottom: 70px;
+  }
 }
 
-.container .next .list .list-item:nth-last-child(1) img {
-    width: 150px;
-    height: 220px;
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    border-radius: 30px;
-    animation: showMainImage 0.5s linear 1 forwards;
-}
+@media (max-width: 480px) {
+  .list .list-item .content {
+    top: 10%;
+  }
 
+  .list .list-item .title {
+    font-size: 2em;
+  }
 
-@keyframes showMainImage {
-    to {
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 0;
-    }
-}
+  .list .list-item .description {
+    font-size: 0.8em;
+    max-height: 80px;
+  }
 
-.container .back .list .list-item:nth-child(1) img {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    animation: hideMainImage 0.5s linear 1 forwards;
-    z-index: 2;
-}
+  .list .list-item .buttons {
+    grid-template-columns: repeat(2, 90px);
+    grid-template-rows: 30px;
+    font-size: 0.7em;
+  }
 
-@keyframes hideMainImage {
-    to {
-        width: 135px;
-        height: 200;
-        border-radius: 10px;
-        left: 50%;
-        bottom: 50px;
-    }
+  .thumb {
+    display: none;
+  }
+
+  .indicators {
+    bottom: 30px;
+  }
+
+  .arrows {
+    bottom: 20px;
+  }
 }
